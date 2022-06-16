@@ -1,5 +1,5 @@
 variable "prefix" {
-  default = "k8s-dev-app"
+  default = "k8sdevapp"
 }
 
 variable "location" {

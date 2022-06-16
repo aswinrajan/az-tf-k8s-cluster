@@ -14,7 +14,7 @@ provider "azurerm" {
 terraform {
   backend "remote" {
     # The name of your Terraform Cloud organization.
-    organization = "aswin-rajan"
+    organization = "aswinrajan"
 
     # The name of the Terraform Cloud workspace to store Terraform state files in.
     workspaces {
@@ -24,6 +24,27 @@ terraform {
 }
 
 resource "azurerm_resource_group" "mainrg" {
-  name     = "${var.prefix}-resources"
+  name     = "${var.prefix}resources"
   location = var.location
+}
+
+resource "azurerm_kubernetes_cluster" "dev-cluster" {
+  name                = "${var.prefix}cluster"
+  location            = azurerm_resource_group.mainrg.location
+  resource_group_name = azurerm_resource_group.mainrg.name
+  dns_prefix          = "${var.prefix}dns"
+
+  default_node_pool {
+    name       = "${var.prefix}np"
+    node_count = 1
+    vm_size    = "Standard_D2_v2"
+  }
+
+  identity {
+    type = "SystemAssigned"
+  }
+
+  tags = {
+    Environment = "Development"
+  }
 }
