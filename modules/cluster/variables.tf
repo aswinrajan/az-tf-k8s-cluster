@@ -5,3 +5,7 @@ variable "prefix" {
 variable "location" {
   default = "westus2"
 }
+
+variable "nodecount" {
+  default = "2"
+}
