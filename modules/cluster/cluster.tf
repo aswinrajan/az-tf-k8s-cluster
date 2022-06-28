@@ -13,7 +13,7 @@ resource "azurerm_kubernetes_cluster" "dev-cluster" {
   default_node_pool {
     name            = "${var.prefix}np"
     node_count      = var.nodecount
-    vm_size         = "Standard_A1_v2"
+    vm_size         = var.vm_size
     type            = "VirtualMachineScaleSets"
     os_disk_size_gb = 35
   }
