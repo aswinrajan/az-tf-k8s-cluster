@@ -7,5 +7,5 @@ variable "location" {
 }
 
 variable "nodecount" {
-  default = "1"
+  default = "4"
 }
