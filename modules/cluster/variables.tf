@@ -11,5 +11,5 @@ variable "nodecount" {
 }
 
 variable "vm_size" {
-  default = "Standard_A2_v2"
+  default = "standard_d2_v5"
 }
